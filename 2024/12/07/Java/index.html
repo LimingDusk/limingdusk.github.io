@@ -41,11 +41,11 @@
 <meta property="og:title" content="Java">
 <meta property="og:url" content="http://example.com/2024/12/07/Java/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="123">
+<meta property="og:description" content="package test1;  import java.util.Scanner;  class test10 &#123;     public static void main(String[] args) &#123;         &#x2F;&#x2F; 用户输入数字字符串         Scanner scanner &#x3D; new Scanner(System.in);         String s">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2024-12-07T04:59:01.000Z">
-<meta property="article:modified_time" content="2024-12-07T04:59:34.616Z">
+<meta property="article:modified_time" content="2024-12-08T07:04:28.775Z">
 <meta property="article:author" content="Liming">
 <meta property="article:tag" content="技术">
 <meta property="article:tag" content="Java">
@@ -2113,7 +2113,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1733547590463),
+    lastupdate: new Date(1733641478495),
     cdn: {
       izitoast_css: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/css/iziToast.min.css',
       izitoast_js: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/js/iziToast.min.js',
@@ -2513,7 +2513,93 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <p>123</p>
+    <pre><code class="java">package test1;
+
+import java.util.Scanner;
+
+class test10 &#123;
+    public static void main(String[] args) &#123;
+        // 用户输入数字字符串
+        Scanner scanner = new Scanner(System.in);
+        String s1;
+
+        // 限制输入为5位以内的数字
+        while (true) &#123;
+            System.out.print(&quot;请输入一个不超过5位的正整数：&quot;);
+            s1 = scanner.nextLine();
+            if (isValidInput(s1)) &#123;
+                break;
+            &#125; else &#123;
+                System.out.println(&quot;输入无效，请输入一个不超过5位的正整数！&quot;);
+            &#125;
+        &#125;
+
+        // 单位字符串
+        String number = &quot;万千百十元&quot;;
+
+        // 补全为5位数字
+        s1 = padLeftZeros(s1, 5);
+
+        // 转换为汉字形式
+        String s2 = convertToChinese(s1);
+
+        // 打印结果
+        printWithUnits(s2, number);
+    &#125;
+
+    /**
+     * 方法1: 将字符串左侧补零至指定长度
+     */
+    public static String padLeftZeros(String input, int targetLength) &#123;
+        StringBuilder sb = new StringBuilder(input);
+        while (sb.length() &lt; targetLength) &#123;
+            sb.insert(0, &quot;0&quot;); // 在最左侧插入 &quot;0&quot;
+        &#125;
+        return sb.toString();
+    &#125;
+
+    /**
+     * 方法2: 将数字字符串转换为汉字形式
+     */
+    public static String convertToChinese(String numberString) &#123;
+        String[] chineseDigits = &#123;&quot;零&quot;, &quot;壹&quot;, &quot;贰&quot;, &quot;叁&quot;, &quot;肆&quot;, &quot;伍&quot;, &quot;陆&quot;, &quot;柒&quot;, &quot;捌&quot;, &quot;玖&quot;&#125;;
+        StringBuilder result = new StringBuilder();
+        for (char c : numberString.toCharArray()) &#123;
+            result.append(chineseDigits[c - &#39;0&#39;]);
+        &#125;
+        return result.toString();
+    &#125;
+
+    /**
+     * 方法3: 按照单位打印数字和单位结合结果
+     */
+    public static void printWithUnits(String chineseNumbers, String units) &#123;
+        int length = Math.min(chineseNumbers.length(), units.length());
+        for (int i = 0; i &lt; length; i++) &#123;
+            System.out.print(chineseNumbers.charAt(i));
+            System.out.print(units.charAt(i));
+        &#125;
+
+        // 如果有多余的字符，继续打印
+        if (chineseNumbers.length() &gt; units.length()) &#123;
+            for (int i = units.length(); i &lt; chineseNumbers.length(); i++) &#123;
+                System.out.print(chineseNumbers.charAt(i));
+            &#125;
+        &#125;
+        System.out.println(); // 换行
+    &#125;
+
+    /**
+     * 方法4: 验证用户输入是否为不超过5位的正整数
+     */
+    public static boolean isValidInput(String input) &#123;
+        if (input.matches(&quot;\\d&#123;1,5&#125;&quot;)) &#123; // 正则匹配1到5位数字
+            return true;
+        &#125;
+        return false;
+    &#125;
+&#125;
+</code></pre>
 
   </div>
   
@@ -2538,10 +2624,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-12-07T12:59:34+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-12-08T15:04:28+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2024年12月7日</p>
+    <p>更新于：2024年12月8日</p>
   </a>
 </div>
 
@@ -3186,7 +3272,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"我的博客","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Liming","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":""},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"我的博客"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com/2024/12/07/Java/","name":"Java"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"我的博客","url":"http://example.com/","description":"","author":{"@type":"Person","name":"Liming","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":""},"publisher":{"@type":"Organization","name":"我的博客","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"Java","description":"","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2024/12/07/Java/"},"author":{"@type":"Person","name":"Liming","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"我的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/2024/12/07/Java/","wordCount":0,"datePublished":"2024-12-07T04:59:01.000Z","dateModified":"2024-12-07T04:59:34.616Z","keywords":"技术,Java","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"我的博客","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Liming","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":""},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"我的博客"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com/2024/12/07/Java/","name":"Java"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"我的博客","url":"http://example.com/","description":"","author":{"@type":"Person","name":"Liming","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":""},"publisher":{"@type":"Organization","name":"我的博客","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"Java","description":"","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2024/12/07/Java/"},"author":{"@type":"Person","name":"Liming","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"我的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/2024/12/07/Java/","wordCount":0,"datePublished":"2024-12-07T04:59:01.000Z","dateModified":"2024-12-08T07:04:28.775Z","keywords":"技术,Java","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
